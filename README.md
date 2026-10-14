@@ -28,6 +28,14 @@ I am a **Lecturer in Agronomy** at **The Islamia University of Bahawalpur, Pakis
 
 I use **R** as a principal research-analysis environment and work with **R Markdown/Quarto**, **VS Code** and **Codex-assisted R/Python workflows** for analysis, modelling, visualisation and research-software development. These are AI-assisted development workflows; they should not be read as a claim of independently verified proficiency in every programming or modelling technique.
 
+## Explore my academic portfolio
+
+| Academic profile | Research and software |
+| --- | --- |
+| 📄 [Academic CV](ACADEMIC_CV.md) | 📚 [Selected publications](PUBLICATIONS.md) |
+| 🔬 [Research projects](RESEARCH_PROJECTS.md) | 📊 [Statistical expertise](STATISTICAL_EXPERTISE.md) |
+| 🌾 [Agronomy expertise](RESEARCH_EXPERTISE.md) | 💻 [Research software](RESEARCH_SOFTWARE.md) |
+
 ## Research interests
 
 | Area | Research themes |
@@ -63,11 +71,11 @@ I work with R Markdown and Quarto to connect data processing, analysis, graphics
 
 [**Explore research software and workflow priorities →**](RESEARCH_SOFTWARE.md)
 
-## Selected publication
+## Selected publications
 
 **Khalid, F., Farooq, M., Murtaza, G., Uphoff, N., Mahmood, N., & Raza, M. A. S. (2022).** Evaluating direct dry-seeding and seed-priming used with the system of rice intensification vs. conventional rice cultivation in Pakistan. *Journal of Crop Improvement, 36*(1), 128–155. [https://doi.org/10.1080/15427528.2021.1910094](https://doi.org/10.1080/15427528.2021.1910094)
 
-Further publications and research information are available through my [university profile](https://iub.edu.pk/author/farhan.khalid) and [ORCID record](https://orcid.org/0000-0002-6413-4505).
+See my [selected DOI-linked publication list](PUBLICATIONS.md). Further publications and research information are available through my [university profile](https://iub.edu.pk/author/farhan.khalid) and [ORCID record](https://orcid.org/0000-0002-6413-4505).
 
 ## Collaboration interests
 
