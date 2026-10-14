@@ -37,9 +37,9 @@ My academic work includes undergraduate and postgraduate teaching, student resea
 
 See [Statistical Expertise](STATISTICAL_EXPERTISE.md) and [Research Software](RESEARCH_SOFTWARE.md) for details.
 
-## Selected scholarly contributions
+## Scholarly publications (2009–2026)
 
-My publication record includes research on rice establishment and seed priming, wheat stress management, crop nutrition, allelopathy and broader plant and environmental science. See the DOI-linked [selected publications](PUBLICATIONS.md).
+My academic CV updated in October 2026 records **24 publications: 23 peer-reviewed journal articles and one scholarly book chapter**. These cover rice establishment and seed priming, wheat stress management, crop nutrition, allelopathy, forestry, plant science and environmental science. See my [complete 24-publication bibliography](PUBLICATIONS.md), including DOI links where available.
 
 ## Collaboration
 
