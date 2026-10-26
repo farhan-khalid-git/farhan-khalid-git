@@ -1,0 +1,11 @@
+# Generated local files and institutional data (never commit)
+outputs/
+uploads/
+__pycache__/
+*.py[cod]
+.Rhistory
+.venv/
+venv/
+.env
+.env.*
+.DS_Store
