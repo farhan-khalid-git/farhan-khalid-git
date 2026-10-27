@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agronomy Timetable Builder</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="control-panel">
+        <div class="brand">
+          <div class="brand-mark">AG</div>
+          <div>
+            <h1>Agronomy Timetable Builder</h1>
+            <p>Workload to timetable exports</p>
+          </div>
+        </div>
+
+        <form id="generatorForm" class="generator-form">
+          <label class="upload-zone" for="workloadInput">
+            <span class="upload-title">Upload workload workbook</span>
+            <span id="fileName" class="upload-name">.xlsx or .xlsm</span>
+            <input id="workloadInput" name="workload" type="file" accept=".xlsx,.xlsm">
+          </label>
+
+          <div class="field-grid">
+            <label>
+              <span>Term</span>
+              <input id="termInput" type="text" value="Spring 2026">
+            </label>
+            <label>
+              <span>w.e.f.</span>
+              <input id="startDateInput" type="date" value="2026-02-02">
+            </label>
+            <label>
+              <span>Output name</span>
+              <input id="outputNameInput" type="text" value="Agronomy_Timetable_Spring_2026">
+            </label>
+            <label>
+              <span>Signature date</span>
+              <input id="signatureDateInput" type="date" value="2026-02-02">
+            </label>
+          </div>
+
+          <fieldset class="invigilator-manager room-manager">
+            <legend>Rooms <span id="roomCount"></span></legend>
+            <div class="room-add-row">
+              <label for="roomNameInput" class="visually-hidden">Room number or name</label>
+              <input id="roomNameInput" type="text" placeholder="Room number or name" maxlength="80" autocomplete="off">
+              <label for="roomTypeInput" class="visually-hidden">Room type</label>
+              <select id="roomTypeInput">
+                <option value="classroom">Classroom</option>
+                <option value="overflow">Overflow / Library</option>
+              </select>
+              <button id="addRoomButton" type="button" class="secondary-button">Add room</button>
+            </div>
+            <p id="roomMessage" class="invigilator-message" role="status" aria-live="polite"></p>
+            <ul id="roomList" class="invigilator-list room-list" aria-label="Available rooms"></ul>
+          </fieldset>
+
+          <div class="switch-row">
+            <label class="switch">
+              <input id="includeBscInput" type="checkbox" checked>
+              <span>B.Sc sheets</span>
+            </label>
+            <label class="switch">
+              <input id="includeMscInput" type="checkbox" checked>
+              <span>M.Sc sheets</span>
+            </label>
+            <label class="switch">
+              <input id="practicalLabFieldInput" type="checkbox" checked>
+              <span>Practicals in lab/field</span>
+            </label>
+          </div>
+
+          <button id="generateButton" class="primary-button" type="submit">
+            Generate timetable
+          </button>
+          <button id="sampleButton" class="secondary-button" type="button">
+            Try sample workload
+          </button>
+
+          <div class="form-divider"></div>
+
+          <div class="field-grid">
+            <label>
+              <span>Date sheet</span>
+              <select id="examTypeInput">
+                <option>Mid Term</option>
+                <option>Final Term</option>
+              </select>
+            </label>
+            <label>
+              <span>Exam start date</span>
+              <input id="examStartDateInput" type="date" value="2026-04-09">
+            </label>
+          </div>
+
+          <fieldset class="invigilator-manager">
+            <legend>Invigilators <span id="invigilatorCount"></span></legend>
+            <div class="invigilator-add-row">
+              <label for="invigilatorNameInput" class="visually-hidden">Invigilator name</label>
+              <input id="invigilatorNameInput" type="text" placeholder="Invigilator name" maxlength="120" autocomplete="off">
+              <button id="addInvigilatorButton" type="button" class="secondary-button">Add</button>
+            </div>
+            <p id="invigilatorMessage" class="invigilator-message" role="status" aria-live="polite"></p>
+            <ul id="invigilatorList" class="invigilator-list" aria-label="Invigilators"></ul>
+          </fieldset>
+
+          <button id="dateSheetButton" class="secondary-button" type="button">
+            Generate date sheet
+          </button>
+        </form>
+      </aside>
+
+      <section class="workspace">
+        <header class="workspace-header">
+          <div>
+            <p class="eyebrow">Department of Agronomy</p>
+            <h2>Automatic class scheduling with clash checks</h2>
+          </div>
+          <div id="statusPill" class="status-pill">Ready</div>
+        </header>
+
+        <section class="summary-grid" id="summaryGrid">
+          <article>
+            <span>Courses</span>
+            <strong id="courseCount">0</strong>
+          </article>
+          <article>
+            <span>Sheets</span>
+            <strong id="sheetCount">0</strong>
+          </article>
+          <article>
+            <span>Clashes</span>
+            <strong id="conflictCount">0</strong>
+          </article>
+        </section>
+
+        <section class="content-layout">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Output</p>
+                <h3>Download files</h3>
+              </div>
+            </div>
+            <div id="downloadList" class="download-list empty-state">
+              Generated Excel, PDF, PNG, and ZIP files will appear here.
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Sheets</p>
+                <h3>Generated timetable tabs</h3>
+              </div>
+            </div>
+            <div id="sheetList" class="sheet-list empty-state">
+              No timetable has been generated yet.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel date-sheet-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Date Sheet</p>
+              <h3>Exam date sheet output</h3>
+            </div>
+          </div>
+          <div class="date-sheet-summary">
+            <article>
+              <span>Courses</span>
+              <strong id="dateSheetCourseCount">0</strong>
+            </article>
+            <article>
+              <span>Rooms</span>
+              <strong id="dateSheetRoomCount">0</strong>
+            </article>
+            <article>
+              <span>Conflicts</span>
+              <strong id="dateSheetConflictCount">0</strong>
+            </article>
+          </div>
+          <div id="dateSheetDownloadList" class="download-list empty-state">
+            Generated date sheet Excel, PDF, PNG, and ZIP files will appear here.
+          </div>
+          <section id="invigilatorDutySummary" class="invigilator-duty-summary" aria-labelledby="invigilatorDutyHeading" hidden>
+            <h4 id="invigilatorDutyHeading">Invigilation duties</h4>
+            <ul id="invigilatorDutyList" class="invigilator-duty-list"></ul>
+          </section>
+          <div class="instructor-tools date-sheet-instructor-tools">
+            <label>
+              <span>Select instructor</span>
+              <select id="dateSheetInstructorSelect" disabled>
+                <option value="">Generate date sheet first</option>
+              </select>
+            </label>
+            <button id="printDateSheetInstructorButton" class="secondary-button" type="button" disabled>
+              Print instructor date sheet
+            </button>
+            <div id="dateSheetInstructorFormatLinks" class="instructor-format-links empty-state">
+              Generate a date sheet and select an instructor to export individual files.
+            </div>
+          </div>
+          <div id="dateSheetStatusList" class="conflict-list empty-state">
+            No date sheet has been generated yet.
+          </div>
+        </section>
+
+        <section class="panel workbook-editor-panel">
+          <div class="panel-header editor-header">
+            <div>
+              <p class="eyebrow">Editor</p>
+              <h3>Edit generated Excel sheets</h3>
+            </div>
+            <div class="editor-actions">
+              <button id="openTimetableEditorButton" class="secondary-button compact-button" type="button" disabled>
+                Open timetable
+              </button>
+              <button id="saveTimetableEditorButton" class="primary-button compact-button" type="button" disabled>
+                Save timetable
+              </button>
+              <button id="openDateSheetEditorButton" class="secondary-button compact-button" type="button" disabled>
+                Open date sheet
+              </button>
+              <button id="saveDateSheetEditorButton" class="primary-button compact-button" type="button" disabled>
+                Save date sheet
+              </button>
+            </div>
+          </div>
+          <p class="editor-note">
+            Edit the generated workbook cells here, then save to update the main Excel/PDF/PNG/ZIP files and the individual instructor exports.
+          </p>
+          <div class="editor-switch">
+            <button id="showTimetableEditorButton" class="editor-mode active" type="button">Timetable workbook</button>
+            <button id="showDateSheetEditorButton" class="editor-mode" type="button">Date sheet workbook</button>
+          </div>
+          <div id="editorStatus" class="editor-status empty-state">
+            Generate a timetable or date sheet, then open it here for editing.
+          </div>
+          <div id="workbookEditor" class="workbook-editor empty-state">
+            No workbook is open.
+          </div>
+        </section>
+
+        <section class="panel instructor-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Instructor</p>
+              <h3>Print individual timetable</h3>
+            </div>
+          </div>
+          <div class="instructor-tools">
+            <label>
+              <span>Select instructor</span>
+              <select id="instructorSelect" disabled>
+                <option value="">Generate timetable first</option>
+              </select>
+            </label>
+            <button id="printInstructorButton" class="secondary-button" type="button" disabled>
+              Print instructor timetable
+            </button>
+            <div id="instructorFormatLinks" class="instructor-format-links empty-state">
+              Generate a timetable and select an instructor to export individual files.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Validation</p>
+              <h3>Instructor clash report</h3>
+            </div>
+          </div>
+          <div id="conflictList" class="conflict-list empty-state">
+            Upload a workload file to run clash validation.
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
