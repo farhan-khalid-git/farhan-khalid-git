@@ -40,7 +40,6 @@ I use reproducible analytical workflows to connect agronomic experiments, statis
 
 ## Other public repositories
 
-- [Quarto manuscript tutorial/template](https://github.com/farhan-khalid-git/manuscript-tutoria) — an existing tutorial-based repository, not presented as an independently released scientific package.
 - [GitHub profile and academic portfolio](https://github.com/farhan-khalid-git/farhan-khalid-git).
 
 [Statistical expertise](STATISTICAL_EXPERTISE.md) · [← Back to GitHub profile](README.md)
