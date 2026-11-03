@@ -77,6 +77,14 @@ I work with R Markdown and Quarto to connect data processing, analysis, graphics
 
 See the [complete list of 24 publications (23 journal articles and one book chapter, 2009–2026)](PUBLICATIONS.md), based on my updated October 2026 academic CV. DOI and original publication links are provided where verified. Additional research information is available through my [university profile](https://iub.edu.pk/author/farhan.khalid) and [ORCID record](https://orcid.org/0000-0002-6413-4505).
 
+## Academic software projects
+
+### 🗓️ Timetable & Examination Date Sheet Generator
+
+A **local-first Python and JavaScript application** for university teaching timetables and examination scheduling. It includes Excel workload imports, room and instructor conflict checks, configurable examination and invigilation schedules, an interactive browser interface, and Excel/PDF/PNG exports. The project has documented automated tests and a synthetic example workbook.
+
+**Repository status:** Private while source ownership, privacy safeguards and suitability for public release are reviewed. It is not yet a public or production-audited release.
+
 ## Collaboration interests
 
 I welcome academically grounded collaboration on **field-crop agronomy, stress-management experiments, experimental design, reproducible statistical workflows, crop-growth modelling and open research tools**—particularly work relevant to wheat, rice and maize under semi-arid conditions.
