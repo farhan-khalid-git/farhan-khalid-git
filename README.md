@@ -67,7 +67,7 @@ I am developing **cropGrowthR**, a research-software project focused on crop-gro
 
 ### 📄 Reproducible scientific manuscripts
 
-I work with R Markdown and Quarto to connect data processing, analysis, graphics and manuscript preparation. My GitHub account also includes a [Quarto manuscript tutorial/template repository](https://github.com/farhan-khalid-git/manuscript-tutoria); it is identified as a tutorial/template rather than an original published software package.
+I work with R Markdown and Quarto to connect data processing, analysis, graphics and manuscript preparation.
 
 [**Explore research software and workflow priorities →**](RESEARCH_SOFTWARE.md)
 
